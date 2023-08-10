@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -E -Q $CFILE -o c.out
+gcc -E -Q ${FILE} -o c

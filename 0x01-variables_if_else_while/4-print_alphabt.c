@@ -11,7 +11,7 @@ int main(void)
 
 	while (x < 123)
 	{
-		if (x != 'q' || x != 'e')
+		if (x != 'q' && x != 'e')
 			putchar(x);
 		x++;
 	}

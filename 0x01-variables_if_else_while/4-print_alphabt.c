@@ -9,7 +9,7 @@ int main(void)
 {
 	char x = 97;
 
-	while (x > 123)
+	while (x < 123)
 	{
 		if (x != 'q' || x != 'e')
 			putchar(x);

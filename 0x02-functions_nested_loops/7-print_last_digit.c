@@ -9,6 +9,14 @@
 
 int print_last_digit(int x)
 {
-	_putchar((x % 10) + 48);
-	return (x % 10);
+	if (x >= 0)
+	{
+		_putchar((x % 10) + 48);
+		return (x % 10);
+	}
+	else
+	{
+		_putchar((-x % 10) + 48);
+		return (-x % 10);
+	}
 }

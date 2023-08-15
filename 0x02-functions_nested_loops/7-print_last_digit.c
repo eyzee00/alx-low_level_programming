@@ -16,14 +16,10 @@ int print_last_digit(int x)
 		return (x % 10);
 	}
 
-	else if (x == INT_MIN)
-	{
-		_putchar((x % 10) + '0');
-		return (x % 10);
-	}
 	else
 	{
-		_putchar(((-x) % 10) + '0');
-		return ((-x) % 10);
+		int a = -x;
+		_putchar(a % 10) + '0'));
+		return (a % 10);
 	}
 }

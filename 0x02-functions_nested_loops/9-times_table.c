@@ -24,10 +24,15 @@ void times_table(void)
 				_putchar((prod / 10) + 48);
 				_putchar((prod % 10) + 48);
 			}
-			if (j < 9 && (prod / 10) == 0)
+			if (j < 9 && (prod / 10) == 0 && (((i * (j + 1)) / 10) == 0))
 			{
 				_putchar(',');
 				_putchar(' ');
+				_putchar(' ');
+			}
+			else if (j < 9 && (prod / 10) == 0 && ((i * (j + 1) / 10) != 0))
+			{
+				_putchar(',');
 				_putchar(' ');
 			}
 			else if (j < 9 && (prod / 10) != 0)

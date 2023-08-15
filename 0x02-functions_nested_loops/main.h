@@ -12,4 +12,6 @@ int _isalpha(int c);
 
 int print_sign(int x);
 
+int _abs(int x);
+
 #endif

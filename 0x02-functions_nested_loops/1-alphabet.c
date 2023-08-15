@@ -1,6 +1,10 @@
 #include "main.h"
 #include <stdio.h>
 
+/**
+ * print_alphabet - function
+ * Description: takes nothing as arguments, prints the alphabet in lowercase
+ */
 
 void print_alphabet(void)
 {

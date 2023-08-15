@@ -24,10 +24,16 @@ void times_table(void)
 				_putchar((prod / 10) + 48);
 				_putchar((prod % 10) + 48);
 			}
-			if (j < 9)
+			if (j < 9 && (prod / 10) == 0)
 			{
 				_putchar(' ');
 				_putchar(' ');
+				_putchar(',');
+			}
+			else if(j < 9 && (prod / 10) != 0)
+			{
+				_putchar(' ');
+				_putchar(',');
 			}
 			j++;
 		}

@@ -2,7 +2,9 @@
 
 /**
  * add - function
- * Description: adds the given numbers
+ * @x: first integer
+ * @y: second integer
+ * Description: adds two numbers(x and y)
  * Return: returns the result of the addition
  */
 

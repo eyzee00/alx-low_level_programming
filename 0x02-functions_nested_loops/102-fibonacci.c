@@ -9,7 +9,8 @@ int main(void)
 {
 	int i = 0;
 	long x = 1, y = 2;
-	for ( ; i <= 50; i++)
+
+	for ( ; i < 50; i++)
 	{
 		if (i == 0)
 		{

@@ -17,9 +17,10 @@ void print_number(int n)
 		_putchar('-');
 	}
 
-	num = n / 10;
-	if (n != 0)
+	num = num / 10;
+	if (num != 0)
 		print_number(num);
 
 	_putchar((n % 10) + 48);
+
 }

@@ -11,7 +11,7 @@
 
 int main(void)
 {
-	long largest = 1;	
+	long largest = 1;
 	long dividor = 2;
 	long num = NUMBER;
 

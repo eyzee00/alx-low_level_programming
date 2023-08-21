@@ -12,7 +12,7 @@ int _atoi(char *s)
 	bool isnegative = false, hasnumbers = false;
 	int i, integer = 0;
 
-	for (i = 0; i < strlen(s); i++)
+	for (i = 0; i < (int)strlen(s); i++)
 	{
 		if (s[i] == '-')
 		{

@@ -2,7 +2,7 @@
 
 /**
  * _strlen - calculates the length of a string
- * @c: the string measured
+ * @s: the string measured
  * Return: the length of the string
  */
 
@@ -14,5 +14,5 @@ int _strlen(char *s)
 	{
 		continue;
 	}
-	return i;
+	return (i);
 }

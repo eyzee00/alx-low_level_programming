@@ -11,16 +11,18 @@
 void puts_half(char *str)
 {
 	int i;
-	if (strlen(str) % 2 == 0)
+
+	len = (int)strlen(str);
+	if (len % 2 == 0)
 	{
-		for (i = strlen(str) / 2; i < strlen(str); i++)
+		for (i = len / 2; i < len; i++)
 		{
 			write(1, str + i, 1);
 		}
 	}
 	else
 	{
-		for (i = (strlen(str) - 1) / 2; i < strlen(str); i++)
+		for (i = (len - 1) / 2; i < len; i++)
 		{
 			write(1, str + i, 1);
 		}

@@ -2,7 +2,7 @@
 #include <string.h>
 
 /**
- * _strcpy - copies the source string and pastes it 
+ * _strcpy - copies the source string and pastes it
  * in the destination striong
  * @dest: destination pointed to
  * @src: source pointed to
@@ -15,7 +15,7 @@ char *_strcpy(char *dest, char *src)
 
 	for (i = 0; i < (int)strlen(dest); i++)
 	{
-		if(src[i] != '\0')
+		if (src[i] != '\0')
 		{
 			dest[i] = src[i];
 		}
@@ -25,5 +25,5 @@ char *_strcpy(char *dest, char *src)
 			break;
 		}
 	}
-	return dest;
+	return (dest);
 }

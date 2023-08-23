@@ -18,11 +18,11 @@ int _strcmp(char *s1, char *s2)
 	for (i = 0; i < s1_len || i < s2_len; i++)
 	{
 		if (i >= s1_len)
-			sum += s2[i] * (-1);
+			sum = s2[i] * (-1);
 		if (i >= s2_len)
-			sum += s1[i];
+			sum = s1[i];
 		else
-			sum += s1[i] - s2[i];
+			sum = s1[i] - s2[i];
 	}
 	return (sum);
 }

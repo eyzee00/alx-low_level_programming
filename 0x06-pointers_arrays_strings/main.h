@@ -22,4 +22,6 @@ void print_number(int n);
 
 void _putchar(int n);
 
+void print_buffer(char *n1, char *n2, char *r, int size_r);
+
 #endif

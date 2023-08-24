@@ -7,19 +7,20 @@
  */
 char *rot13(char *str)
 {
-	int i, j;
-	char rot13[] = {'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y','z','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm'};
-	char alpha[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y','z'};
+	int i;
+
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
-		for (j = 0; rot13[j] != '\0'; j++)
+		for ( ; (str[i] >= 97 && str[i] <= 122) || (str[i] >= 65 && str[i] <= 90); )
 		{
-			if (str[i] == alpha[j] || str[i] == alpha[j] - 32)
+			if ((str[i] > 109 && str[i] <= 122) || (str[i] > 77 && str[i] <= 90))
 			{
-				str[i] = rot13[j];
+				str[i] = str[i] - 13;
 				break;
 			}
+			str[i] = str[i] + 13;
+			break;
 		}
 	}
 	return (str);

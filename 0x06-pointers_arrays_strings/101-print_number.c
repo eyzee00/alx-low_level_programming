@@ -18,7 +18,7 @@ void print_number(int n)
 	}
 
 	num = n / 10;
-	if(num != 0)
+	if (num != 0)
 		print_number(num);
 	_putchar((unsigned int)n % 10 + 48);
 }

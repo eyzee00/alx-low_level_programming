@@ -18,4 +18,8 @@ char *leet(char *str);
 
 char *rot13(char *str);
 
+void print_number(int n);
+
+void _putchar(int n);
+
 #endif

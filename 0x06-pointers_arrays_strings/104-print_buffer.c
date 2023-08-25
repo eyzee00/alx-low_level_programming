@@ -40,7 +40,7 @@ void print_line(char *str, int n, int l)
 void print_buffer(char *b, int size)
 {
 	int i;
-	for (i = 0; i < size / 10 && size; i++)
+	for (i = 0; i <= (size - 1) / 10 && size; i++)
 	{
 		printf("%08x: ", i * 10);
 		if (i < size / 10)

@@ -1,67 +1,78 @@
 #include "main.h"
+
 /**
- * infinite_add - performs addition on n1 and n2
- * @n1: The first number
- * @n2: The second number
- * @r: Pointer to result
- * @size_r: The size of the result string
- * Return: 0 if buffer small to store result, 
- * returns a pointer to result (r) otherwise
+ * rev_string - reverses the elements in a string
+ * @str: the string to be reversed
+ * Return: 0
  */
+
+void rev_string(char *str)
+{
+	int i = 0;
+	int j = 0;
+	char temp;
+
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	i--;
+
+	for (j = 0; j < i; j++, i--)
+	{
+		temp = str[j];
+		str[j] = str[i];
+		str[i] = temp;
+	}
+}
+
+/**
+ * infinite_add - add 2 numbers together
+ * @n1: text representation of 1st number to add
+ * @n2: text representation of 2nd number to add
+ * @r: pointer to buffer
+ * @size_r: buffer size
+ * Return: pointer to calling function
+ */
+
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int lim1, lim2, tmplim, rlim, i, sum, num1, num2, carry;
-	char tmp[100000];
+	int carry = 0, i = 0, j = 0, digits = 0;
+	int num1 = 0, num2 = 0, temp_sum = 0;
 
-	rlim = i = lim1 = lim2 = sum = num1 = num2 = carry = 0;
-	while (n1[lim1] != '\0')
-		lim1++;
-	while (n2[lim2] != '\0')
-		lim2++;
-	if (lim1 + 2 > size_r || lim2 + 2 > size_r)
+	while (n1[i] != '\0')
+		i++;
+	while (n2[j] != '\0')
+		j++;
+	i--;
+	j--;
+	if (j >= size_r || i >= size_r)
 		return (0);
-	lim1--;
-	lim2--;
-	while (i <= lim1 || i <= lim2)
+	while (j >= 0 || i >= 0 || carry == 1)
 	{
-		num1 = num2 = 0;
-		if (i <= lim1)
-			num1 = n1[lim1 - i] - 48;
-		if (i <= lim2 && (lim2 - i) >= 48)
-			num2 = n2[lim2 - i] - 48;
-		sum = num1 + num2 + carry;
-		if (sum >= 10)
-		{
+		if (i < 0)
+			num1 = 0;
+		else
+			num1 = n1[i] - 48;
+		if (j < 0)
+			num2 = 0;
+		else
+			num2 = n2[j] - '0';
+		temp_sum = num1 + num2 + carry;
+		if (temp_sum >= 10)
 			carry = 1;
-			sum -= 10;
-		}
 		else
 			carry = 0;
-		r[i] = sum + 48;
-		i++;
-		rlim++;
+		if (digits >= (size_r - 1))
+			return (0);
+		r[digits] = (temp_sum % 10) + '0';
+		digits++;
+		j--;
+		i--;
 	}
-	if (carry > 0)
-	{
-		r[i] = carry + 48;
-		r[i + 1] = '\0';
-	}
-	i = tmplim = 0;
-	while (i <= rlim)
-	{
-		tmp[i] = r[rlim - i];
-		tmplim++;
-		i++;
-	}
-	i = 0;
-	while (i < tmplim)
-	{
-		if (r[i] == '\0')
-		{
-			break;
-		}
-		r[i] = tmp[i];
-		i++;
-	}
+	if (digits == size_r)
+		return (0);
+	r[digits] = '\0';
+	rev_string(r);
 	return (r);
 }

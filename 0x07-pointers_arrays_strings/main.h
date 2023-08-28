@@ -16,4 +16,6 @@ void print_chessboard(char (*a)[8]);
 
 void _putchar(int n);
 
+void print_diagsums(int *a, int size);
+
 #endif

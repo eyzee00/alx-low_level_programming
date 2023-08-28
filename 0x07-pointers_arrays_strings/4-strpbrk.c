@@ -1,6 +1,5 @@
 #include "main.h"
 #include <string.h>
-#include <stddef.h>
 /**
  * _strpbrk - searches s for the first occurence of any byte of accept
  * @s: the string tested
@@ -24,5 +23,5 @@ char *_strpbrk(char *s, char *accept)
 	if (i < strlen(s))
 		return (s + i);
 	else
-		return (NULL);
+		return (0);
 }

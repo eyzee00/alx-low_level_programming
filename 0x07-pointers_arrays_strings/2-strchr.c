@@ -22,7 +22,7 @@ char *_strchr(char *s, char c)
 		}
 	}
 	if (!isfound)
-		return (NULL);
+		return ('\0');
 	else
 		return (s + i);
 }

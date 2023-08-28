@@ -17,11 +17,8 @@ char *_strpbrk(char *s, char *accept)
 		for (j = 0; j < strlen(accept); j++)
 		{
 			if (*(s + i) == *(accept + j))
-				break;
+				return (s + i);
 		}
 	}
-	if (i < strlen(s))
-		return (s + i);
-	else
-		return (0);
+	return (0);
 }

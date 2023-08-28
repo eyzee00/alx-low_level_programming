@@ -1,6 +1,7 @@
 #include "main.h"
 /**
  * _memset - fills memory starting from s, with char b
+ * @s: address of the memory block
  * @n: last byte to be filled
  * @b: constant byte
  * Return: a pointer to a char, (s)

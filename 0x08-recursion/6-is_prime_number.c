@@ -9,7 +9,7 @@
 
 int prime_scanner(int pot_div, int num)
 {
-	if ((num % pot_div != 0) && (num != pot_div))
+	if ((num % pot_div == 0) && (num != pot_div))
 		return (0);
 	if (pot_div > (num / 2) + 5)
 		return (1);

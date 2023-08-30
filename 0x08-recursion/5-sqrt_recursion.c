@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * sqrt_scanner - iterates from 1 to num to find the square root
  * @num: Positive integer
@@ -16,7 +15,7 @@ int sqrt_scanner(int pot_sqrt, int num)
 	return (sqrt_scanner(pot_sqrt + 1, num));
 }
 /**
- * _sqrt_recursion: finds the square root of a natural number
+ * _sqrt_recursion - finds the square root of a natural number
  * @n: Positive integer
  * Return: Same as sqrt_scanner
  */

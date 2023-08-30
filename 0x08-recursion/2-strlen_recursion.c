@@ -1,5 +1,5 @@
 #include "main.h"
-#include <unistd.c>
+#include <unistd.h>
 
 /**
  * _strlen_recursion - calculates the length of a string recursively

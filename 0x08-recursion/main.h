@@ -19,7 +19,7 @@
 
 	int _is_prime_number(int n);
 
-	int palindrome_scanner(char *s, min, max);
+	int palindrome_scanner(char *s, int min, int max);
 
 	int is_palindrome(char *s);
 

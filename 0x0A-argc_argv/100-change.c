@@ -10,7 +10,7 @@
 
 int main(int argc, char *argv[])
 {
-	int coin_num = 0, cent_amount;
+	int coin_num = 0, cent_amount = atoi(argv[1]);
 	int coin_set[5] = {1, 2, 5, 10, 25};
 
 	if (argc != 2)
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		return (1);
 	}
-	cent_amount = atoi(argv[1]);
+
 	while (cent_amount > 0)
 	{
 		if (cent_amount - coin_set[4] >= 0)

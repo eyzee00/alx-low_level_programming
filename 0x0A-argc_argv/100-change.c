@@ -5,12 +5,10 @@
  * @argc: argument count
  * @argv: argument vector
  * Return: minimum number of coins amounting to change
- * (1) if more or less than 1 argument is included
  */
 int main(int argc, char **argv)
 {
-	int coin_num, tmp_amount, i;
-	int coins[5] = {1, 2, 5, 10, 25};
+	int coin_num = 0, tmp_amount = atoi(argv[1]), i, coins[5] = {1, 2, 5, 10, 25};
 
 	if (argc != 2)
 	{
@@ -19,8 +17,6 @@ int main(int argc, char **argv)
 	}
 	else
 	{
-		coin_num = 0;
-		tmp_amount = atoi(argv[1]);
 		while (tmp_amount > coins[4])
 		{
 			tmp_amount = tmp_amount - coins[4];

@@ -2,7 +2,7 @@
 #define __MAIN__H__
 
 	int _putchar(char c);
-	
+
 	int _islower(int c);
 
 	int _isalpha(int c);
@@ -42,3 +42,4 @@
 	char *_strstr(char *haystack, char *needle);
 
 #endif
+

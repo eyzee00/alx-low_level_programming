@@ -19,7 +19,7 @@ int char_to_int(char *s)
 	{
 		isnegative = true;
 	}
-	for (i = 0; i < strlen(s); i++)
+	for (i = 0; i < (int)strlen(s); i++)
 	{
 		if(s[i] >= 48 && s[i] <= 57)
 		{

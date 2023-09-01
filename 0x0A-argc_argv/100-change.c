@@ -22,15 +22,16 @@ int main(int argc, char *argv[])
 	while (cent_amount > 0)
 	{
 		if (cent_amount - coin_set[4] >= 0)
-			cent_amount = cent_amount - coin_set[4], coin_num++;
+			cent_amount = cent_amount - coin_set[4];
 		else if (cent_amount - coin_set[3] >= 0)
-			cent_amount = cent_amount - coin_set[3], coin_num++;
+			cent_amount = cent_amount - coin_set[3];
 		else if (cent_amount - coin_set[2] >= 0)
-			cent_amount = cent_amount - coin_set[2], coin_num++;
+			cent_amount = cent_amount - coin_set[2];
 		else if (cent_amount - coin_set[1] >= 0)
-			cent_amount = cent_amount - coin_set[1], coin_num++;
+			cent_amount = cent_amount - coin_set[1];
 		else if (cent_amount - coin_set[0] >= 0)
-			cent_amount = cent_amount - coin_set[0], coin_num++;
+			cent_amount = cent_amount - coin_set[0];
+		coin_num++;
 	}
 	printf("%d\n", coin_num);
 	return (0);

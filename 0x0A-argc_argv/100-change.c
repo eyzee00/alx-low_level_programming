@@ -15,37 +15,34 @@ int main(int argc, char **argv)
 		printf("Error\n");
 		return (1);
 	}
-	else
+	while (tmp_amount > coins[4])
 	{
-		while (tmp_amount > coins[4])
-		{
-			tmp_amount = tmp_amount - coins[4];
-			coin_num++;
-		}
-		while (tmp_amount < coins[4] && tmp_amount > coins[3])
-		{
-			tmp_amount = tmp_amount - coins[3];
-			coin_num++;
-		}
-		while (tmp_amount < coins[3] && tmp_amount > coins[2])
-		{
-			tmp_amount = tmp_amount - coins[2];
-			coin_num++;
-		}
-		while (tmp_amount < coins[2] && tmp_amount > coins[1])
-		{
-			tmp_amount = tmp_amount - coins[1];
-			coin_num++;
-		}
-		for (i = 0; i < 5; i++)
-		{
-			if (tmp_amount == coins[i])
-			{
-				coin_num++;
-				break;
-			}
-		}
-		printf("%d\n", coin_num);
+		tmp_amount = tmp_amount - coins[4];
+		coin_num++;
 	}
+	while (tmp_amount < coins[4] && tmp_amount > coins[3])
+	{
+		tmp_amount = tmp_amount - coins[3];
+		coin_num++;
+	}
+	while (tmp_amount < coins[3] && tmp_amount > coins[2])
+	{
+		tmp_amount = tmp_amount - coins[2];
+		coin_num++;
+	}
+	while (tmp_amount < coins[2] && tmp_amount > coins[1])
+	{
+		tmp_amount = tmp_amount - coins[1];
+		coin_num++;
+	}
+	for (i = 0; i < 5; i++)
+	{
+		if (tmp_amount == coins[i])
+		{
+			coin_num++;
+			break;
+		}
+	}
+	printf("%d\n", coin_num);
 	return (0);
 }

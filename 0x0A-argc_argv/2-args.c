@@ -3,7 +3,7 @@
 /**
  * main - Entry point
  * @argc: Argument Count
- * @argv Argument Vector
+ * @argv: Argument Vector
  * Return: (0) Success
  */
 

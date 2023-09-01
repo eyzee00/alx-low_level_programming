@@ -1,27 +1,23 @@
 #include <stdio.h>
 #include <string.h>
-typedef enum boolean{
-	false,
-	true
-}boolean;
+#include <stdbool.h>
 /**
- * main - Entry point
- * @argc: Argument Count
- * @argv: Argument Vector
- * Return: (1) if less than 2 arguments are received
- * (0) otherwise
+ * char_to_int - converts a string of digits to an integer
+ * @s: the string of numbers to convert
+ * Return: an integer extracted from the string
  */
 int char_to_int(char *s)
 {
-	boolean isnegative = false;
+	bool isnegative = false;
 	int integer = 0, i;
+
 	if (s[0] == '-')
 	{
 		isnegative = true;
 	}
 	for (i = 0; i < (int)strlen(s); i++)
 	{
-		if(s[i] >= 48 && s[i] <= 57)
+		if (s[i] >= 48 && s[i] <= 57)
 		{
 			integer = (integer * 10) + (s[i] - 48);
 		}
@@ -31,11 +27,17 @@ int char_to_int(char *s)
 	else
 		return (integer);
 }
-
-
+/**
+ * main - Entry point
+ * @argc: Argument Count
+ * @argv: Argument Vector
+ * Return: (1) if less than 2 arguments are received
+ * (0) otherwise
+ */
 int main(int argc, char *argv[])
 {
 	int num1, num2;
+
 	if (argc != 3)
 	{
 		printf("Error\n");

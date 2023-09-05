@@ -13,8 +13,6 @@ char *_strdup(char *str)
 	int size = (int)strlen(str), i;
 	char *str_copy;
 
-	if (size == 0)
-		return (NULL);
 	str_copy = (char *)malloc(size * sizeof(char));
 	if (str_copy == NULL)
 		return (NULL);

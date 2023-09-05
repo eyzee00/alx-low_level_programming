@@ -10,11 +10,11 @@
  */
 char *_strdup(char *str)
 {
+	int i, size;
+	int *str_copy;
+
 	if (str == NULL)
 		return (NULL);
-	int size = strlen(str), i;
-	char *str_copy;
-
 	str_copy = malloc((size + 1) * sizeof(char));
 	if (str_copy == NULL)
 		return (NULL);

@@ -24,7 +24,7 @@ int word_count(char *str)
 }
 /**
  * free_curr_grid - frees the grid from the heap memory
- * @string: the grid to be freed
+ * @grid: the grid to be freed
  * @index: the index where malloc failed
  * Return: void
  */
@@ -60,25 +60,23 @@ char **strtow(char *str)
 		else
 		{
 			current_word = str;
-			while (*str != 32 && *str != 0)
-			{
+			for ( ; *str != 32 && *str != 0; str++)
 				sub_len++;
-				str++;
-			}
 			wordlist[row] = (char *)malloc((sub_len + 1) * sizeof(char));
 			if (wordlist[row] == NULL)
 			{
 				free_curr_grid(wordlist, row);
 				return (NULL);
 			}
-			while (*current_word != 32 && *current_word != 0)
+			for ( ; *current_word != 32 && *current_word != 0; column++, current_word++)
 			{
 				wordlist[row][column] = *current_word;
-				current_word++;
-				column++;
 			}
 			wordlist[row][column] = '\0';
-			row++; column = 0; sub_len = 0; str++;
+			row++;
+			column = 0;
+			sub_len = 0;
+			str++;
 		}
 	}
 	return (wordlist);

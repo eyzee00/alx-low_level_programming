@@ -2,16 +2,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 /**
- * _putchar - prints a character to stdout
- * @c: the character to print
- * Return: void
- */
-void _putchar(int c)
-{
-	write(1, &c, 1);
-}
-
-/**
  * is_digit - checks if a string contains only digits
  * @string: the string to be checked
  * Return: (1) if (string) contains only digits, (-1) otherwise

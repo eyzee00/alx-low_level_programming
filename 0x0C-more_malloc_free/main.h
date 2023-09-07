@@ -13,7 +13,7 @@
 	void printstr(char *string);
 	char *zero_purge(char *string, int length);
 	char *zero_scanner(char *string, int length);
-	void _putchar(char c);
+	void _putchar(int c);
 	char *infinite_mul(char *str1, char *str2, int str1_len, int str2_len);
 
 #endif

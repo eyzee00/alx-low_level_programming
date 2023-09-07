@@ -1,52 +1,76 @@
+#include "main.h"
 #include <stdlib.h>
 #include <unistd.h>
-#include "main.h"
 /**
- * _putchar - prints a character to the screen
- * @c: the character to be printed
+ * _putchar - prints a character to stdout
+ * @c: the character to print
  * Return: void
  */
 void _putchar(char c)
 {
 	write(1, &c, 1);
 }
-/**
- * print_str - Print a given string
- * @str: String to print
- */
-void print_string(char *string)
-{
-	int i;
 
-	i = 0;
-	while (string[i] != 0)
+/**
+ * is_digit - checks if a string contains only digits
+ * @string: the string to be checked
+ * Return: (1) if (string) contains only digits, (-1) otherwise
+ */
+int is_digit(char *string)
+{
+	unsigned int i;
+
+	for (i = 0; *(string + i) != 0; i++)
 	{
-		_putchar(string[i]);
-		i++;
+		if (*(string + i) < 48 || *(string + i) > 57)
+			return (-1);
 	}
-	_putchar('\n');
+	return (1);
 }
-
-
 /**
- * print_err - Print the word "Error"
+ * init_string - initializes all bytes of string to '0'
+ * @string: the string to be initialized
+ * @length: the length of the string
+ * Return: void
  */
-void print_err(void)
+void init_string(char *string, unsigned int length)
 {
-	_putchar('E');
-	_putchar('r');
-	_putchar('r');
-	_putchar('o');
-	_putchar('r');
+	unsigned int i;
+
+	for (i = 0; i < length; i++)
+		*(string + i) = 48;
+}
+/**
+ * _strlen - calaculates the length of a string
+ * @string: the string operated on
+ * Return: the length of the string
+ */
+int _strlen(char *string)
+{
+	int i = 0;
+
+	for (; *(string + i) != 0; i++)
+		;
+	return (i);
+}
+/**
+ * printstr - prints a string to the stdout
+ * @string: the string to be printed
+ * Return: void
+ */
+void printstr(char *string)
+{
+	unsigned int i;
+	for (i = 0; *(string + i) != 0; i++)
+		_putchar(*(string + i));
 	_putchar('\n');
-	exit(98);
 }
 
 /**
- * rev_string - Reverse the given string
- * @s: The string to reverse
- * @size: Size of string to revers;
- * Return: Nothing
+ * reverse - reverses the string passed
+ * @string: the string to be reversed
+ * @length: the length of the string
+ * Return: void
  */
 void reverse(char *string, int length)
 {
@@ -55,258 +79,164 @@ void reverse(char *string, int length)
 
 	tmp = malloc(length);
 	if (tmp == NULL)
-		print_err();
-	i = 0;
-	while (*(string + i) != 0)
-	{
-		tmp[i] = *(string + i);
-		i++;
-	}
-	j = i - 1;
-	i = 0;
-	while (j > 0)
-	{
-		*(string + j) = tmp[i];
-		j--;
-		i++;
-	}
-	*(string + j) = tmp[i];
+		printstr("Error");
+	for (i = 0; *(string + i) != 0; i++)
+		*(tmp + i) = *(string + i);
+	for (j = i - 1, i = 0; j >= 0; i++, j--)
+		*(string + j) = *(tmp + i);
 	free(tmp);
 }
-
 /**
- * str_len - Find the length of a given string
- * @str: String to find the length of
- *
- * Return: Length of the string
+ * zero_purge - removes zeroes from the string passed
+ * @string: the string operated on
+ * @length: the length of the string
+ * Return: a pointer to the resulting string
  */
-unsigned int str_len(char *str)
+char *zero_purge(char *string, int length)
 {
-	unsigned int i;
+	char *purged;
+	int i, j;
 
-	i = 0;
-	while (str[i] != '\0')
+	for (i = 0; *(string + i) == 48 && *(string + i) != 0; i++)
+		;
+	if (length - i == 0)
 	{
-		i++;
+		purged = malloc(2 * sizeof(char));
+		*purged = 48;
+		*(purged + 1) = 0;
+		return(purged);
 	}
-	return (i);
+	else
+		length = length - i;
+	purged = malloc(length * sizeof(char) + 1);
+	for (j = 0; j < length; j++, i++)
+		*(purged + j) = *(string + i);
+	*(purged + i) = 0;
+	return (purged);
 }
-
 /**
- * init - Initialize an array with 0
- * @arr: The array to initialize
- * @size: Size of the array
- *
- * Return: Pointer to array
+ * zero_scanner - checks for the that zeroes have to be purged
+ * @string: the string to be checked
+ * @length: the length of the string
+ * Return: pointer to the resulting string
  */
-char *init(char *arr, int size)
+char *zero_scanner(char *string, int length)
 {
 	int i;
+	char *result;
 
-	i = 0;
-	while (i < size)
+	if (*string == 48 && length != 1)
+		result = zero_purge(string, length);
+	else if (*string == 48 && length == 1)
 	{
-		arr[i] = '0';
-		i++;
+		result = malloc(length + 1);
+		if (result == NULL)
+			printstr("Error");
+		*result = 48;
+		*(result + 1) = 0;
 	}
-	return (arr);
-}
-
-/**
- * _isstrdigit - Check if input is only numbers
- * @str: Given input to check
- *
- * Return: 1 if a number, 0 if otherwise
- */
-int _isstrdigit(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
+	else
 	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
+		result = malloc(length + 1);
+		if (result == NULL)
+			printstr("Error");
+		for (i = 0; i < length; i++)
+			*(result + i) = *(string + i);
+		*(result + i) = 0;
 	}
-	return (1);
+	return (result);
 }
-
 /**
- * mul - Multiply two strings together
- * @num1: The first number, as a string
- * @num2: The second number, as a string
- * @len1: The length of the first string
- * @len2: The length of the second string
- *
- * Return: Pointer to char array
+ * infinite_mul - multiplies the two strings passed to the function
+ * @str1: the first string, representing a number
+ * @str2: the second string, representing another number
+ * @str1_len: the length of the first string
+ * @str2_len: the length of the second string
+ * Return: a pointer to the resulting string
  */
-char *mul(char *num1, char *num2, int len1, int len2)
+char *infinite_mul(char *str1, char *str2, int str1_len, int str2_len)
 {
-	int i, prod, j, carry, k, digit, reslen;
-	char *res;
+	char *result;
+	int product, carry = 0, digit = 0, res_len, i, j, k = 0;
 
-	reslen = len1 + len2 + 1;
-	res = malloc(reslen * sizeof(char));
-	if (res == NULL)
-		print_err();
-	res = init(res, reslen);
-	i = len2 - 1; carry = k = digit = 0;
-	while (i >= 0 && k < (len1 + len2))
+	res_len = str1_len + str2_len + 1;
+	result = malloc(res_len * sizeof(char));
+	if (result == NULL)
+		printstr("Error");
+	init_string(result, res_len);
+	i = str2_len - 1;
+	for (; i >= 0 && k < (str1_len + str2_len); i--, digit++)
 	{
-		j = len1 - 1;
-		k = digit;
-		while (j >= 0)
+		j = str1_len - 1;
+		for (k = digit; j >= 0; j--, k++)
 		{
 			carry = 0;
-			prod = (num1[j] - '0') * (num2[i] - '0');
-			if (prod > 9)
-				carry += prod / 10;
-			prod = prod % 10;
-			if (((res[k] - '0') + prod) > 9)
+			product = (str1[j] - 48) * (str2[i] - 48);
+			if (product > 9)
+				carry += product / 10;
+			product = product % 10;
+			if (((result[k] - 48) + product) > 9)
 			{
-				carry += 1;
-				res[k] += (prod - 10);
+				carry = carry + 1;
+				result[k] = result[k] + (product - 10);
 			}
 			else
-				res[k] += prod;
-			res[k + 1] += carry;
-			k++; j--;
+				result[k] = result[k] + product;
+			result[k + 1] += carry;
 		}
-		i--; digit++;
 	}
-	if (res[k] == '0')
-		res[k] = '\0';
+	if (result[k] == 48)
+		result[k] = 0;
 	else
-		res[k + 1] = '\0';
-	return (res);
+		result[k + 1] = '\0';
+	return (result);
 }
-
 /**
- * remove_zeroes - Remove zeroes from num
- * @str: String to remove zeroes from
- * @len: Length of string
- *
- * Return: Pointer to new string
+ * main - uses all the above functions to multiply the passed arguments
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: (0) if successful
  */
-char *remove_zeroes(char *str, int len)
+int main(int argc, char **argv)
 {
-	int i, j;
-	char *nstr;
-
-	i = 0;
-	while (str[i] == '0' && str[i] != '\0')
-	{
-		i++;
-	}
-	if (len - i == 0)
-	{
-		nstr = malloc(2 * sizeof(*nstr));
-		nstr[0] = '0';
-		nstr[1] = '\0';
-		return (nstr);
-	}
-	else
-		len -= i;
-	nstr = malloc(len * sizeof(*nstr) + 1);
-	j = 0;
-	while (j < len)
-	{
-		nstr[j] = str[i];
-		j++;
-		i++;
-	}
-	nstr[j] = '\0';
-	return (nstr);
-}
-
-/**
- * check_zero - Check to see if the number is zero or if zeroes need to be gone
- * @str: Str to check for zeroes
- * @len: len of string
- *
- * Return: Pointer to new num string
- */
-char *check_zero(char *str, int len)
-{
-	char *num;
-	int i;
-
-	if (str[0] == '0' && len != 1)
-		num = remove_zeroes(str, len);
-	else if (str[0] == '0' && len == 1)
-	{
-		num = malloc(len + 1);
-		if (num == NULL)
-			print_err();
-		num[0] = '0';
-		num[1] = '\0';
-	}
-	else
-	{
-		num = malloc(len + 1);
-		if (num == NULL)
-			print_err();
-		i = 0;
-		while (i < len)
-		{
-			num[i] = str[i];
-			i++;
-		}
-		num[i] = '\0';
-	}
-	return (num);
-}
-
-/**
- * main - Run all necessary functions to multply two strings as numbers
- * @argc: Number of args
- * @argv: Value of args
- *
- * Return: 0 on success
- */
-int main(int argc, char *argv[])
-{
-	int len1, len2, anslen;
-	char *ans, *num1, *num2;
+	char *number1, *number2, *result;
+	int res_len, arg_len1, arg_len2;
 
 	if (argc != 3)
 	{
-		print_err();
+		printstr("Error");
 		exit(98);
 	}
-	if (_isstrdigit(argv[1]) == 0 || _isstrdigit(argv[2]) == 0)
+	if (is_digit(*(argv + 1)) == -1 || is_digit(*(argv + 2)) == -1)
 	{
-		print_err();
+		printstr("Error");
 		exit(98);
 	}
-	len1 = str_len(argv[1]);
-	len2 = str_len(argv[2]);
-	num1 = check_zero(argv[1], len1);
-	if (*num1 == '0')
+	arg_len1 = _strlen(*(argv + 1));
+	arg_len2 = _strlen(*(argv + 2));
+	number1 = zero_scanner(*(argv + 1), arg_len1);
+	if (*number1 == 48)
 	{
-		_putchar('0');
-		_putchar('\n');
+		printstr("0\n");
 		return (0);
 	}
-	num2 = check_zero(argv[2], len2);
-	if (*num2 == '0')
+	number2 = zero_scanner(*(argv + 2), arg_len2);
+	if (*number2 == 48)
 	{
-		_putchar('0');
-		_putchar('\n');
+		printstr("0\n");
 		return (0);
 	}
-	len1 = str_len(num1);
-	len2 = str_len(num2);
-	if (len1 > len2)
-		ans = mul(num1, num2, len1, len2);
+	arg_len1 = _strlen(number1);
+	arg_len2 = _strlen(number2);
+	if (arg_len2 < arg_len1)
+		result = infinite_mul(number1, number2, arg_len1, arg_len2);
 	else
-		ans = mul(num2, num1, len2, len1);
-	anslen = str_len(ans);
-	rev_string(ans, anslen);
-	print_str(ans);
-	free(ans); 
-	free(num1); 
-	free(num2);
+		result = infinite_mul(number2, number1, arg_len2, arg_len1);
+	res_len = _strlen(result);
+	reverse(result, res_len);
+	printstr(result);
+	free(result);
+	free(number1);
+	free(number2);
 	return (0);
 }

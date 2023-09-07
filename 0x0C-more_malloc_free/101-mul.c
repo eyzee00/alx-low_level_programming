@@ -1,6 +1,15 @@
-#include "main.h"
 #include <stdlib.h>
 #include <unistd.h>
+/**
+ * _putchar - prints a character to stdout
+ * @c: the character to print
+ * Return: void
+ */
+void _putchar(char c)
+{
+	write(1, &c, 1);
+}
+
 /**
  * is_digit - checks if a string contains only digits
  * @string: the string to be checked
@@ -44,6 +53,19 @@ int _strlen(char *string)
 	return (i);
 }
 /**
+ * printstr - prints a string to the stdout
+ * @string: the string to be printed
+ * Return: void
+ */
+void printstr(char *string)
+{
+	unsigned int i;
+	for (i = 0; *(string + i) != 0; i++)
+		_putchar(*(string + i));
+	_putchar('\n');
+}
+
+/**
  * reverse - reverses the string passed
  * @string: the string to be reversed
  * @length: the length of the string
@@ -56,25 +78,12 @@ void reverse(char *string, int length)
 
 	tmp = malloc(length);
 	if (tmp == NULL)
-		_puts("Error");
+		printstr("Error");
 	for (i = 0; *(string + i) != 0; i++)
 		*(tmp + i) = *(string + i);
 	for (j = i - 1, i = 0; j >= 0; i++, j--)
 		*(string + j) = *(tmp + i);
 	free(tmp);
-}
-/**
- * _puts - prints a string to the stdout
- * @string: the string to be printed
- * Return: void
- */
-void _puts(char *string)
-{
-	unsigned int i;
-
-	for (i = 0; *(string + i) != 0; i++)
-		_putchar(*(string + i));
-	_putchar('\n');
 }
 /**
  * zero_purge - removes zeroes from the string passed
@@ -121,7 +130,7 @@ char *zero_scanner(char *string, int length)
 	{
 		result = malloc(length + 1);
 		if (result == NULL)
-			_puts("Error");
+			printstr("Error");
 		*result = 48;
 		*(result + 1) = 0;
 	}
@@ -129,7 +138,7 @@ char *zero_scanner(char *string, int length)
 	{
 		result = malloc(length + 1);
 		if (result == NULL)
-			_puts("Error");
+			printstr("Error");
 		for (i = 0; i < length; i++)
 			*(result + i) = *(string + i);
 		*(result + i) = 0;
@@ -152,7 +161,7 @@ char *infinite_mul(char *str1, char *str2, int str1_len, int str2_len)
 	res_len = str1_len + str2_len + 1;
 	result = malloc(res_len * sizeof(char));
 	if (result == NULL)
-		_puts("Error");
+		printstr("Error");
 	init_string(result, res_len);
 	i = str2_len - 1;
 	for (; i >= 0 && k < (str1_len + str2_len); i--, digit++)
@@ -194,12 +203,12 @@ int main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		_puts("Error");
+		printstr("Error");
 		exit(98);
 	}
 	if (is_digit(*(argv + 1)) == -1 || is_digit(*(argv + 2)) == -1)
 	{
-		_puts("Error");
+		printstr("Error");
 		exit(98);
 	}
 	arg_len1 = _strlen(*(argv + 1));
@@ -207,13 +216,13 @@ int main(int argc, char **argv)
 	number1 = zero_scanner(*(argv + 1), arg_len1);
 	if (*number1 == 48)
 	{
-		_puts("0\n");
+		printstr("0\n");
 		return (0);
 	}
 	number2 = zero_scanner(*(argv + 2), arg_len2);
 	if (*number2 == 48)
 	{
-		_puts("0\n");
+		printstr("0\n");
 		return (0);
 	}
 	arg_len1 = _strlen(number1);
@@ -224,7 +233,7 @@ int main(int argc, char **argv)
 		result = infinite_mul(number2, number1, arg_len2, arg_len1);
 	res_len = _strlen(result);
 	reverse(result, res_len);
-	_puts(result);
+	printstr(result);
 	free(result);
 	free(number1);
 	free(number2);

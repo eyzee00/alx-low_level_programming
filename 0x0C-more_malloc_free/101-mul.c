@@ -1,15 +1,5 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-/**
- * _putchar - prints a character to the screen
- * @n: ascii code of the character
- * Return: void
- */
-void _putchar(int n)
-{
-	write(1, &n, 1);
-}
 /**
  * is_digit - checks if a string contains only digits
  * @string: the string to be checked
@@ -65,7 +55,7 @@ void reverse(char *string, int length)
 
 	tmp = malloc(length);
 	if (tmp == NULL)
-		printf("Error\n");
+		_puts("Error");
 	for (i = 0; *(string + i) != 0; i++)
 		*(tmp + i) = *(string + i);
 	for (j = i - 1, i = 0; j >= 0; i++, j--)

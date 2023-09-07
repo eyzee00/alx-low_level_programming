@@ -14,14 +14,14 @@ void _putchar(char c)
  * print_str - Print a given string
  * @str: String to print
  */
-void print_str(char *str)
+void print_string(char *string)
 {
 	int i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (string[i] != 0)
 	{
-		_putchar(str[i]);
+		_putchar(string[i]);
 		i++;
 	}
 	_putchar('\n');
@@ -48,30 +48,30 @@ void print_err(void)
  * @size: Size of string to revers;
  * Return: Nothing
  */
-void rev_string(char *s, int size)
+void reverse(char *string, int length)
 {
-	char *str;
-	int i, r;
+	char *tmp;
+	int i, j;
 
-	str = malloc(size);
-	if (str == NULL)
+	tmp = malloc(length);
+	if (tmp == NULL)
 		print_err();
 	i = 0;
-	while (*(s + i) != 0)
+	while (*(string + i) != 0)
 	{
-		str[i] = *(s + i);
+		tmp[i] = *(string + i);
 		i++;
 	}
-	r = i - 1;
+	j = i - 1;
 	i = 0;
-	while (r > 0)
+	while (j > 0)
 	{
-		*(s + r) = str[i];
-		r--;
+		*(string + j) = tmp[i];
+		j--;
 		i++;
 	}
-	*(s + r) = str[i];
-	free(str);
+	*(string + j) = tmp[i];
+	free(tmp);
 }
 
 /**
@@ -305,6 +305,8 @@ int main(int argc, char *argv[])
 	anslen = str_len(ans);
 	rev_string(ans, anslen);
 	print_str(ans);
-	free(ans); free(num1); free(num2);
+	free(ans); 
+	free(num1); 
+	free(num2);
 	return (0);
 }

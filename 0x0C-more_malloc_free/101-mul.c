@@ -51,6 +51,7 @@ int _strlen(char *string)
 void printstr(char *string)
 {
 	unsigned int i;
+
 	for (i = 0; *(string + i) != 0; i++)
 		_putchar(*(string + i));
 	_putchar('\n');
@@ -94,7 +95,7 @@ char *zero_purge(char *string, int length)
 		purged = malloc(2 * sizeof(char));
 		*purged = 48;
 		*(purged + 1) = 0;
-		return(purged);
+		return (purged);
 	}
 	else
 		length = length - i;

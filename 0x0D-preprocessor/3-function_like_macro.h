@@ -1,4 +1,4 @@
-#ifndef __3__FUNCTION__LIKE__MACRO__H__
-#define __3__FUNCTION__LIKE__MACRO__H__
-#define ABS(x) (x > 0 ? x : (-1) * x)
+#ifndef __ABS__H
+#define __ABS__H
+#define ABS(x) ((x <= 0) ? ((-1) * x) : x)
 #endif

@@ -11,15 +11,20 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *baby_dog;
-	unsigned int i, j, k;
+	unsigned int i = 0, j = 0, k;
 
-	while (*(name + i) != 0 && name != 0)
+	while (*(name + i) != 0)
 		i++;
-	while (*(owner + j) != 0 && owner != 0)
+	i++;
+	while (*(owner + j) != 0)
 		j++;
+	j++;
 	baby_dog = malloc(sizeof(dog_t));
 	if (baby_dog == NULL)
+	{
+		free(baby_dog);
 		return (NULL);
+	}
 	baby_dog->name = malloc(i * sizeof(char));
 	if (baby_dog->name == NULL)
 	{

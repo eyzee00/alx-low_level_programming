@@ -15,10 +15,8 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	while (*(name + i) != 0)
 		i++;
-	i++;
 	while (*(owner + j) != 0)
 		j++;
-	j++;
 	baby_dog = malloc(sizeof(dog_t));
 	if (baby_dog == NULL)
 	{

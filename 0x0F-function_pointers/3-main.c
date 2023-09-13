@@ -13,15 +13,20 @@ int main(int argc, char **argv)
 	int num1, num2;
 	int (*operation)(int, int);
 
-	if (argc != 4)
+	if (argc < 4 || argc > 4)
 	{
 		printf("Error\n");
 		exit(98);
 	}
-	operation = get_op_func(argv[2]);
-	if (operation == NULL || argv[2][1] != 0)
+	if (argv[2][1] != 0)
 	{
-		printf("Error");
+		printf("Error\n");
+		exit(99);
+	}
+	operation = get_op_func(argv[2]);
+	if (operation == NULL)
+	{
+		printf("Error\n");
 		exit(99);
 	}
 	num1 = atoi(argv[1]);

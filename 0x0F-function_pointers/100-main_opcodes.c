@@ -17,13 +17,13 @@ int main(int argc, char **argv)
 		printf("Error\n");
 		exit(1);
 	}
-	if (argv[1] < 0)
+	byte_count = atoi(*(argv + 1));
+	if (byte_count < 0)
 	{
 		printf("Error\n");
 		exit(2);
 	}
 	opcode_string = (char *)main;
-	byte_count = atoi(*(argv + 1));
 	i = 0;
 	while (i < byte_count)
 	{

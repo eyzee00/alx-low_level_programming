@@ -3,6 +3,8 @@
 /**
  * main - prints the opcodes of the main function
  * in hexadecimal lowercase, each opcode is 2 char long
+ * @argc: Argument count
+ * @argv: Argument vector
  * Return: (0) if successful
  */
 int main(int argc, char **argv)

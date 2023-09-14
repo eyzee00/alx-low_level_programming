@@ -1,4 +1,5 @@
 #include <stdarg.h>
+#include <string.h>
 #include <stdio.h>
 #include "variadic_functions.h"
 /**
@@ -49,14 +50,14 @@ void print_string(va_list arg_list)
  */
 void print_all(const char * const format, ...)
 {
-	unsigned int i = 0, j = 0;
+	unsigned int i = 0, j = 0, check = 0;
 	direc directive_list[] = {
-		{"c", print_char},
-		{"i", print_int},
-		{"f", print_float},
-		{"s", print_string}
+		{'c', print_char},
+		{'i', print_int},
+		{'f', print_float},
+		{'s', print_string}
 	};
-	char *separator = "";
+	char *separator = ", ";
 	va_list arg_ptr;
 
 	va_start(arg_ptr, format);
@@ -65,16 +66,18 @@ void print_all(const char * const format, ...)
 		j = 0;
 		while (j < 4)
 		{
-			if (*directive_list[j].type == format[i])
+			if (directive_list[j].type == format[i])
 			{
-				printf("%s", separator);
-				directive_list[j].fun(arg_ptr, separator);
-				separator = ", ";
+				check = 1;
+				directive_list[j].fun(arg_ptr);
 				break;
 			}
 			j++;
 		}
+		if (check && (i < strlen(format) - 1))
+			printf("%s", separator);
 		i++;
+		check = 0;
 	}
 	printf("\n");
 	va_end(arg_ptr);

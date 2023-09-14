@@ -38,10 +38,7 @@ void print_string(va_list arg_list)
 	char *string = va_arg(arg_list, char *);
 
 	if (string == NULL)
-	{
-		printf("(nil)");
-		return;
-	}
+		string = "(nil)";
 	printf("%s", string);
 }
 /**
@@ -70,8 +67,9 @@ void print_all(const char * const format, ...)
 			if (*directive_list[j].type == format[i])
 			{
 				printf("%s", separator);
-				directive_list[j].fun(arg_ptr, separator);
+				directive_list[j].fun(arg_ptr);
 				separator = ", ";
+				break;
 			}
 			j++;
 		}

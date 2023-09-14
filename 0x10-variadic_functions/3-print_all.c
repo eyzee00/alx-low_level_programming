@@ -50,34 +50,35 @@ void print_string(va_list arg_list)
  */
 void print_all(const char * const format, ...)
 {
-	unsigned int i = 0, j = 0, check = 0;
-	direc directive_list[] = {
-		{'c', print_char},
-		{'i', print_int},
-		{'f', print_float},
-		{'s', print_string}
-	};
+	unsigned int i = 0, check = 0;
 	char *separator = ", ";
 	va_list arg_ptr;
 
 	va_start(arg_ptr, format);
 	while (*(format + i) != '\0' && format != NULL)
 	{
-		j = 0;
-		while (j < 4)
+		check = 1;
+		switch (format[i])
 		{
-			if (directive_list[j].type == format[i])
-			{
-				check = 1;
-				directive_list[j].fun(arg_ptr);
-				break;
-			}
-			j++;
+		case 'c':
+			print_char(arg_ptr);
+			break;
+		case 'i':
+			print_int(arg_ptr);
+			break;
+		case 'f':
+			print_float(arg_ptr);
+			break;
+		case 's':
+			print_string(arg_ptr);
+			break;
+		default:
+			check = 0;
+			break;
 		}
-		if (check && (i < strlen(format) - 1))
+		if (format[i + 1] && check)
 			printf("%s", separator);
 		i++;
-		check = 0;
 	}
 	printf("\n");
 	va_end(arg_ptr);

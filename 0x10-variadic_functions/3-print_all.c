@@ -60,20 +60,20 @@ void print_all(const char * const format, ...)
 	va_list arg_ptr;
 
 	va_start(arg_ptr, format);
-	while (*(format + i) != 0 && format != 0)
+	while (*(format + i) != '\0' && format != NULL)
 	{
+		j = 0;
 		while (j < 4)
 		{
-			if (directive_list[j].type[0] == format[i])
+			if (*directive_list[j].type == format[i])
 			{
 				printf("%s", separator);
-				directive_list[j].fun(arg_ptr);
+				directive_list[j].fun(arg_ptr, separator);
 				separator = ", ";
 				break;
 			}
 			j++;
 		}
-		j = 0;
 		i++;
 	}
 	printf("\n");

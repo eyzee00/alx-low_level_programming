@@ -10,7 +10,7 @@
 typedef struct directive
 {
 	char *type;
-	void (*fun)(va_list);
+	void (*fun)();
 } direc;
 
 int sum_them_all(const unsigned int n, ...);

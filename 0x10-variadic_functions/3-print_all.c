@@ -64,7 +64,7 @@ void print_all(const char * const format, ...)
 	{
 		while (j < 4)
 		{
-			if (*directive_list[j].type == format[i])
+			if (directive_list[j].type[0] == format[i])
 			{
 				printf("%s", separator);
 				directive_list[j].fun(arg_ptr);

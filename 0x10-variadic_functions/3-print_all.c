@@ -50,7 +50,7 @@ void print_string(va_list arg_list)
  * besides it woll be ignored
  * Return: (void)
  */
-void print_all(const char *const format, ...)
+void print_all(const char * const format, ...)
 {
 	unsigned int i = 0, j = 0;
 	direc directive_list[] = {
@@ -70,7 +70,7 @@ void print_all(const char *const format, ...)
 			if (*directive_list[j].type == format[i])
 			{
 				printf("%s", separator);
-				directive_list[j].fun(arg_ptr);
+				directive_list[j].fun(arg_ptr, separator);
 				separator = ", ";
 			}
 			j++;

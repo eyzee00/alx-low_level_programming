@@ -1,17 +1,6 @@
 #ifndef __VARIADIC__FUNCTION__
 #define __VARIADIC__FUNCTION__
 #include <stdarg.h>
-/**
- * struct directive - structure consisting of type and a pointer
- * to a function to execute
- * @type: the type of the format specifier
- * @fun: the function associated with the type
- */
-typedef struct directive
-{
-	char type;
-	void (*fun)(va_list);
-} direc;
 
 int sum_them_all(const unsigned int n, ...);
 void print_numbers(const char *separator, const unsigned int n, ...);

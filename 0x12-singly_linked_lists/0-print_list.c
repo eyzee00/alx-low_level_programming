@@ -2,7 +2,7 @@
 #include <stddef.h>
 /**
  * print_list - prints list elements starting from the head
- * @head: the head of the list (the first node)
+ * @h: the head of the list (the first node)
  * Return: Number of nodes
  */
 size_t print_list(const list_t *h)

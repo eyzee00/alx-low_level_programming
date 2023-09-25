@@ -22,18 +22,18 @@ listint_t *insert_nodeint_at_index(listint_t **h, unsigned int idx, int n)
 	if (newnode == NULL)
 		return (NULL);
 	newnode->n = n;
-	if (iter != NULL && idx == 0)
+	if (idx == 0)
 	{
-		newnode->next = iter;
+		newnode->next = *h;
 		*h = newnode;
 		return (newnode);
 	}
-	while (iter != NULL && i != idx)
+	while (iter != NULL && i != idx - 1)
 	{
 		i++;
 		iter = iter->next;
 	}
-	if (i != idx)
+	if (i != idx - 1)
 	{
 		free(newnode);
 		return (NULL);

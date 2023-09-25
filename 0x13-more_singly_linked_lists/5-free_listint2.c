@@ -8,16 +8,16 @@
  */
 void free_listint2(listint_t **h)
 {
-	listint_t *placeholder;
+	listint_t *placeholder, *iter;
 
 	if (*h == NULL)
 		return;
-	while ((*h)->next != NULL)
+	iter = *h;
+	while (iter != NULL)
 	{
-		placeholder = *h;
-		*h = (*h)->next;
+		placeholder = iter;
+		iter = iter->next;
 		free(placeholder);
 	}
-	free(*h);
 	*h = NULL;
 }

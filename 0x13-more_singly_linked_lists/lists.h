@@ -1,6 +1,7 @@
 #ifndef __LISTS__H__
 #define __LISTS__H__
 #include <stdio.h>
+#include <stdlib.h>
 #include <stddef.h>
 /**
  * struct listint_s - a linked list struct containing an integer as data
@@ -16,5 +17,6 @@ typedef struct listint_s
 /*general purpose functions*/
 size_t print_listint(const listint_t *h);
 size_t listint_len(const listint_t *h);
+listint_t *add_nodeint(const listint_t **h, const int n);
 
 #endif

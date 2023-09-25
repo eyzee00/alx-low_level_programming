@@ -6,7 +6,7 @@
  * @n: the data that should be contained inside the new node
  * Return: the address of the new node, (NULL) if operation fails
  */
-listint_t *add_nodeint(const listint_t **h, const int n)
+listint_t *add_nodeint(listint_t **h, const int n)
 {
 	listint_t *newnode = malloc(sizeof(listint_t));
 
@@ -19,7 +19,7 @@ listint_t *add_nodeint(const listint_t **h, const int n)
 	}
 	else
 	{
-		newnode->next = (listint_t *) *h;
+		newnode->next = *h;
 		*h = newnode;
 		return (newnode);
 	}

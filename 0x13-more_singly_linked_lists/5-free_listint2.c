@@ -10,7 +10,7 @@ void free_listint2(listint_t **h)
 {
 	listint_t *placeholder, *iter;
 
-	if (*h == NULL)
+	if (h == NULL)
 		return;
 	iter = *h;
 	while (iter != NULL)

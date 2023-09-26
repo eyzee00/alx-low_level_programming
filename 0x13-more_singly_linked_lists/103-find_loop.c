@@ -7,14 +7,16 @@
  */
 listint_t *find_listint_loop(listint_t *head)
 {
-	listint_t *current;
+	listint_t *current, *next = head;
 
-	while (head != NULL)
+	if (next == NULL)
+		return (NULL);
+	while (next != NULL)
 	{
-		current = head;
-		head = head->next;
-		if (head > current)
-			return (head);
+		current = next;
+		next = next->next;
+		if (next > current)
+			return (next);
 	}
 	return (NULL);
 }

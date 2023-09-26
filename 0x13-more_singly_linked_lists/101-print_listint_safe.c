@@ -5,9 +5,9 @@
  * @head: the address of the pointer to the first node (the head)
  * Return: (void)
  */
-void free_addrlist(addrlist_t *head)
+void free_addrlist(addrlist_t **head)
 {
-	addrlist_t *placeholder, *iter = head;
+	addrlist_t *placeholder, *iter = *head;
 
 	while (iter != NULL)
 	{
@@ -15,6 +15,7 @@ void free_addrlist(addrlist_t *head)
 		iter = iter->next;
 		free(placeholder);
 	}
+	*head = NULL;
 }
 /**
  * add_addr - adds an address to the previously visited memory regions
@@ -22,16 +23,16 @@ void free_addrlist(addrlist_t *head)
  * @address: the address to add
  * Return: (void)
  */
-void add_addr(addrlist_t **head, const listint_t *address)
+void add_addr(addrlist_t **head, void *address)
 {
 	addrlist_t *newnode = malloc(sizeof(addrlist_t));
 
 	if (newnode == NULL)
 	{
-		free_addrlist(*head);
+		free_addrlist(head);
 		exit(98);
 	}
-	newnode->address = (void *)address;
+	newnode->address = address;
 	newnode->next = *head;
 	*head = newnode;
 }
@@ -55,17 +56,17 @@ size_t print_listint_safe(const listint_t *head)
 		{
 			if (iter->address == head)
 			{
-				printf("-> [%p] %d\n", (void *)head, head->n);
-				free_addrlist(curraddr);
+				printf("-> [%p] %d\n", (void *) head, head->n);
+				free_addrlist(&curraddr);
 				return (nodecount);
 			}
 			iter = iter->next;
 		}
 		nodecount++;
-		printf("[%p] %d\n", (void *)head, head->n);
-		add_addr(&curraddr, head);
+		printf("[%p] %d\n", (void *) head, head->n);
+		add_addr(&curraddr, (void *) head);
 		head = head->next;
 	}
-	free_addrlist(curraddr);
+	free_addrlist(&curraddr);
 	return (nodecount);
 }

@@ -39,7 +39,7 @@ listint_t *insert_nodeint_at_index(listint_t **h, unsigned int idx, int n);
 int delete_nodeint_at_index(listint_t **head, unsigned int index);
 listint_t *reverse_listint(listint_t **head);
 size_t print_listint_safe(const listint_t *head);
-void add_addr(addrlist_t **head, const listint_t *address);
-void free_addrlist(addrlist_t *head);
+void add_addr(addrlist_t **head, void *address);
+void free_addrlist(addrlist_t **head);
 
 #endif

@@ -27,18 +27,18 @@ void add_addr(addrlist_t **head, const listint_t *address)
 	addrlist_t *newnode = malloc(sizeof(listint_t));
 
 	if (newnode == NULL)
-	{	
+	{
 		free_addrlist(*head);
 		exit(98);
 	}
 	newnode->address = (void *)address;
 	newnode->next = *head;
-	*head = newnode;	
+	*head = newnode;
 }
 /**
  * print_listint_safe - prints a list while checking for infinite
  * loops cause by faulty pointers
- * @h: a pointer to the first node (the head)
+ * @head: a pointer to the first node (the head)
  * Return: the number of nodes in the list
  */
 size_t print_listint_safe(const listint_t *head)

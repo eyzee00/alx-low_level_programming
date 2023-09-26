@@ -16,7 +16,7 @@ typedef struct listint_s
 } listint_t;
 /**
  * struct addrlist_s - a linked list containing an address as data
- * @addr: a void address
+ * @address: a void address
  * @next: a pointer to the next element in the list (or the rest of the list)
  */
 typedef struct addrlist_s

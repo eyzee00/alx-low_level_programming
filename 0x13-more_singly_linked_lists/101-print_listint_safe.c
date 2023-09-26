@@ -24,7 +24,7 @@ void free_addrlist(addrlist_t *head)
  */
 void add_addr(addrlist_t **head, const listint_t *address)
 {
-	addrlist_t *newnode = malloc(sizeof(listint_t));
+	addrlist_t *newnode = malloc(sizeof(addrlist_t));
 
 	if (newnode == NULL)
 	{

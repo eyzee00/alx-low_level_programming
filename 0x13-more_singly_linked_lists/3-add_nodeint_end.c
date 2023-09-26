@@ -2,8 +2,8 @@
 
 /**
  * add_nodeint_end - creates and adds a node to the end of the list
- * @n: the date that should be inside the new node
- * @h: a pointer to the first element of the list
+ * @n: the data that should be inside the new node
+ * @h: the address of the pointer to the first element of the list
  * Return: the address of the new node, (NULL) if allocation fails
  */
 listint_t *add_nodeint_end(listint_t **h, const int n)

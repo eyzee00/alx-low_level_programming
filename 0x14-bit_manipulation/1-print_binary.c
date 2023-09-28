@@ -1,14 +1,5 @@
 #include "main.h"
 /**
- * _putchar - prints a character to the screen
- * @c: the char to be printed
- * Return: (void)
- */
-void _putchar(char c)
-{
-	write(1, &c, 1);
-}
-/**
  * print_binary - prints the binary representation of the given arg
  * @n: the number to be printed in binary
  * Return: (void)

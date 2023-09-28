@@ -7,5 +7,6 @@ unsigned int binary_to_uint(const char *b);
 int power(int n, int expo);
 void print_binary(unsigned long int n);
 void _putchar(char c);
+int get_bit(unsigned long n, unsigned int index);
 
 #endif

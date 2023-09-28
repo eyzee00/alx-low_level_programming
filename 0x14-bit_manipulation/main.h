@@ -8,5 +8,6 @@ int power(int n, int expo);
 void print_binary(unsigned long int n);
 void _putchar(char c);
 int get_bit(unsigned long n, unsigned int index);
+int set_bit(unsigned long int *n, unsigned int index);
 
 #endif

@@ -73,12 +73,12 @@ int main(int argc, char **argv)
 	readc = read(filesrc, buffer, LEN);
 	if (readc < 0)
 		open_read_err(argv[1]);
-	for (; readc > 0;)
+	while (readc > 0)
 	{
 		writec = write(filedest, buffer, readc);
 		if (writec != readc)
 			create_write_err(argv[2]);
-		readc = read(filesrc, buffer, 1024);
+		readc = read(filesrc, buffer, LEN);
 		if (readc < 0)
 			open_read_err(argv[1]);
 	}

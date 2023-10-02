@@ -12,21 +12,32 @@ size_t read_textfile(const char *filename, size_t letters)
 	int filedesc = open(filename, O_RDWR), count;
 	char *buffer;
 
-	if (!filedesc)
+	if (filedesc < 0)
 		return (0);
+	if (filename == NULL)
+	{
+		close(filedesc);
+		return (0);
+	}
 	buffer = malloc(letters);
 	if (!buffer)
 	{
 		close(filedesc);
 		return (0);
 	}
-	if (read(filedesc, buffer, letters) != letters)
+	count = read(filedesc, buffer, letters);
+	if (count < 0)
 	{
+		free(buffer);
 		close(filedesc);
 		return (0);
 	}
-	count = strlen(buffer);
-	write(1, buffer, count);
+	if (write(1, buffer, count) < 0)
+	{
+		free(buffer);
+		close(filedesc);
+		return (0);
+	}
 	free(buffer);
 	return (count);
 }

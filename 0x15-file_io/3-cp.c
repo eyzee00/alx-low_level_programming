@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <fcntl.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,7 +58,7 @@ int main(int argc, char **argv)
 {
 	int filesrc, filedest, writec, readc, closec;
 	char buffer[LEN];
-
+	mode_t permis = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 	if (argc != 3)
 		argcount_err();
 	if (argv[1] == 0)
@@ -67,7 +68,7 @@ int main(int argc, char **argv)
 	filesrc = open(argv[1], O_RDONLY);
 	if (filesrc < 0)
 		open_read_err(argv[1]);
-	filedest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	filedest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, permis);
 	if (filedest < 0)
 		create_write_err(argv[2]);
 	readc = read(filesrc, buffer, LEN);
@@ -76,7 +77,7 @@ int main(int argc, char **argv)
 	while (readc > 0)
 	{
 		writec = write(filedest, buffer, readc);
-		if (writec != readc)
+		if (writec < 0 || writec != readc)
 			create_write_err(argv[2]);
 		readc = read(filesrc, buffer, LEN);
 		if (readc < 0)

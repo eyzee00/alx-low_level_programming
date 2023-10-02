@@ -15,31 +15,20 @@ size_t read_textfile(const char *filename, size_t letters)
 
 	if (letters == 0)
 		return (0);
+	buffer = malloc(letters);
 	if (filename == NULL)
 		return (0);
 	filedesc = open(filename, O_RDONLY);
 	if (filedesc < 0)
 		return (0);
-	buffer = malloc(letters);
-	if (!buffer)
-		return (0);
 	readc = read(filedesc, buffer, letters);
 	if (readc < 0)
-	{
-		free(buffer);
 		return (0);
-	}
 	writec = write(1, buffer, readc);
 	if (writec < 0)
-	{
-		free(buffer);
 		return (0);
-	}
 	if (close(filedesc) < 0)
-	{
-		free(buffer);
 		return (0);
-	}
 	free(buffer);
 	return (readc);
 }

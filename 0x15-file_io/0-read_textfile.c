@@ -13,6 +13,8 @@ size_t read_textfile(const char *filename, size_t letters)
 	int readc, writec;
 	char *buffer;
 
+	if (letters == 0)
+		return (0);
 	if (filename == NULL)
 		return (0);
 	filedesc = open(filename, O_RDONLY);

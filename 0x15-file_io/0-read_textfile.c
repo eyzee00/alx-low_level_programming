@@ -9,12 +9,10 @@
  */
 size_t read_textfile(const char *filename, size_t letters)
 {
-	int filedesc;
-	int readc, writec;
+	int filedesc = 0;
+	int readc = 0, writec = 0;
 	char *buffer;
 
-	if (letters == 0)
-		return (0);
 	buffer = malloc(letters);
 	if (filename == NULL)
 		return (0);
@@ -24,7 +22,7 @@ size_t read_textfile(const char *filename, size_t letters)
 	readc = read(filedesc, buffer, letters);
 	if (readc < 0)
 		return (0);
-	writec = write(1, buffer, readc);
+	writec = write(STDOUT_FILENO, buffer, readc);
 	if (writec < 0)
 		return (0);
 	if (close(filedesc) < 0)

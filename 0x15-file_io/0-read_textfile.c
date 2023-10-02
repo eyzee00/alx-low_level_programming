@@ -14,6 +14,8 @@ size_t read_textfile(const char *filename, size_t letters)
 	char *buffer;
 
 	buffer = malloc(letters);
+	if (buffer == NULL)
+		return (0);
 	if (filename == NULL)
 		return (0);
 	filedesc = open(filename, O_RDONLY);

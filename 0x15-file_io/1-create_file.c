@@ -7,7 +7,7 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	int writec = 0, filedesc = 0;
+	int filedesc = 0;
 
 	if (filename == NULL)
 		return (-1);

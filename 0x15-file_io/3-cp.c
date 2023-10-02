@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#define LEN 1204
+#define LEN 1024
 /**
  * argcount_err - handles the case when the number of arguments is
  * invalid
@@ -59,6 +59,7 @@ int main(int argc, char **argv)
 	int filesrc, filedest, writec, readc, closec;
 	char buffer[LEN];
 	mode_t permis = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+
 	if (argc != 3)
 		argcount_err();
 	if (argv[1] == 0)
@@ -74,7 +75,7 @@ int main(int argc, char **argv)
 	readc = read(filesrc, buffer, LEN);
 	if (readc < 0)
 		open_read_err(argv[1]);
-	while (readc > 0)
+	while (readc == LEN)
 	{
 		writec = write(filedest, buffer, readc);
 		if (writec < 0 || writec != readc)

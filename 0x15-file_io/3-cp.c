@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#define LEN 1024
+#define LEN 1204
 /**
  * argcount_err - handles the case when the number of arguments is
  * invalid

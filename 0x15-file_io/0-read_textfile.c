@@ -20,22 +20,17 @@ size_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	buffer = malloc(letters);
 	if (!buffer)
-	{
-		close(filedesc);
 		return (0);
-	}
 	readc = read(filedesc, buffer, letters);
 	if (readc < 0)
 	{
 		free(buffer);
-		close(filedesc);
 		return (0);
 	}
 	writec = write(1, buffer, readc);
 	if (writec < 0)
 	{
 		free(buffer);
-		close(filedesc);
 		return (0);
 	}
 	if (close(filedesc) < 0)

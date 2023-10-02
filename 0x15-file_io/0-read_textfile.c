@@ -38,6 +38,11 @@ size_t read_textfile(const char *filename, size_t letters)
 		close(filedesc);
 		return (0);
 	}
+	if (close(filedesc) < 0)
+	{
+		free(buffer);
+		return (0);
+	}
 	free(buffer);
 	return (count);
 }

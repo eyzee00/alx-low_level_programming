@@ -14,8 +14,7 @@ int create_file(const char *filename, char *text_content)
 	filedesc = open(filename, O_CREAT | O_RDONLY | O_TRUNC, 0600);
 	if (filedesc < 0)
 		return (-1);
-	if (text_content == NULL)
-		return (-1);
+	if (text_content != NULL)
 	writec = write(filedesc, text_content, strlen(text_content));
 	if (writec < 0)
 		return (-1);

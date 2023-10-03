@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <fcntl.h>
-#include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include <string.h>
 #define LEN 1024
 /**
  * err_hand - handles all the error cases using variadic functions
@@ -19,28 +17,22 @@ void err_hand(int casenum, ...)
 	switch (casenum)
 	{
 	case 97:
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		dprintf(2, "Usage: cp file_from file_to\n");
 		exit(97);
 		break;
-	
 	case 98:
-	
-		dprintf(STDERR_FILENO, "Error: Can't read from file ");
-		dprintf(STDERR_FILENO, "%s\n", va_arg(arg_list, char *));
+		dprintf(2, "Error: Can't read from file ");
+		dprintf(2, "%s\n", va_arg(arg_list, char *));
 		exit(98);
 		break;
-	
 	case 99:
-	
-		dprintf(STDERR_FILENO, "Error: Can't write to ");
-		dprintf(STDERR_FILENO, "%s\n", va_arg(arg_list, char *));
+		dprintf(2, "Error: Can't write to ");
+		dprintf(2, "%s\n", va_arg(arg_list, char *));
 		exit(99);
 		break;
-	
 	default:
-	
-		dprintf(STDERR_FILENO, "Error: Can't close fd ");
-		dprintf(STDERR_FILENO, "%d\n", va_arg(arg_list, int));
+		dprintf(2, "Error: Can't close fd ");
+		dprintf(2, "%d\n", va_arg(arg_list, int));
 		exit(100);
 		break;
 	}

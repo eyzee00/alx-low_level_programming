@@ -67,28 +67,28 @@ int main(int argc, char **argv)
 	if (argv[2] == 0)
 		create_write_err(argv[2]);
 	filesrc = open(argv[1], O_RDONLY);
-	if (filesrc < 0)
+	if (filesrc == -1)
 		open_read_err(argv[1]);
 	filedest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, permis);
-	if (filedest < 0)
+	if (filedest == -1)
 		create_write_err(argv[2]);
 	readc = read(filesrc, buffer, LEN);
-	if (readc < 0)
+	if (readc == -1)
 		open_read_err(argv[1]);
-	while (readc == LEN)
+	while (readc > 0)
 	{
 		writec = write(filedest, buffer, readc);
-		if (writec < 0 || writec != readc)
+		if (writec == -1)
 			create_write_err(argv[2]);
 		readc = read(filesrc, buffer, LEN);
-		if (readc < 0)
+		if (readc == -1)
 			open_read_err(argv[1]);
 	}
 	closec = close(filesrc);
-	if (closec < 0)
+	if (closec == -1)
 		close_err(filesrc);
 	closec = close(filedest);
-	if (closec < 0)
+	if (closec == -1)
 		close_err(filedest);
 	return (0);
 }

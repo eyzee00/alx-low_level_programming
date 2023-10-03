@@ -17,22 +17,22 @@ void err_hand(int casenum, ...)
 	switch (casenum)
 	{
 	case 97:
-		dprintf(2, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 		break;
 	case 98:
-		dprintf(2, "Error: Can't read from file ");
-		dprintf(2, "%s\n", va_arg(arg_list, char *));
+		dprintf(STDERR_FILENO, "Error: Can't read from file ");
+		dprintf(STDERR_FILENO, "%s\n", va_arg(arg_list, char *));
 		exit(98);
 		break;
 	case 99:
-		dprintf(2, "Error: Can't write to ");
-		dprintf(2, "%s\n", va_arg(arg_list, char *));
+		dprintf(STDERR_FILENO, "Error: Can't write to ");
+		dprintf(STDERR_FILENO, "%s\n", va_arg(arg_list, char *));
 		exit(99);
 		break;
 	default:
-		dprintf(2, "Error: Can't close fd ");
-		dprintf(2, "%d\n", va_arg(arg_list, int));
+		dprintf(STDERR_FILENO, "Error: Can't close fd ");
+		dprintf(STDERR_FILENO, "%d\n", va_arg(arg_list, int));
 		exit(100);
 		break;
 	}
@@ -78,10 +78,10 @@ int main(int argc, char **argv)
 	}
 	closec = close(filesrc);
 	if (closec == -1)
-		err_hand(105, filesrc);
+		err_hand(100, filesrc);
 	closec = close(filedest);
 	if (closec == -1)
-		err_hand(105, filedest);
+		err_hand(100, filedest);
 	free(buffer);
 	return (0);
 }

@@ -16,28 +16,33 @@ void err_hand(int casenum, ...)
 	va_list arg_list;
 
 	va_start(arg_list, casenum);
-	if (casenum == 97)
+	switch (casenum)
 	{
+	case 97:
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
-	}
-	else if (casenum == 98)
-	{
+		break;
+	
+	case 98:
+	
 		dprintf(STDERR_FILENO, "Error: Can't read from file ");
 		dprintf(STDERR_FILENO, "%s\n", va_arg(arg_list, char *));
 		exit(98);
-	}
-	else if (casenum == 99)
-	{
+		break;
+	
+	case 99:
+	
 		dprintf(STDERR_FILENO, "Error: Can't write to ");
 		dprintf(STDERR_FILENO, "%s\n", va_arg(arg_list, char *));
 		exit(99);
-	}
-	else
-	{
+		break;
+	
+	default:
+	
 		dprintf(STDERR_FILENO, "Error: Can't close fd ");
 		dprintf(STDERR_FILENO, "%d\n", va_arg(arg_list, int));
 		exit(100);
+		break;
 	}
 	va_end(arg_list);
 }

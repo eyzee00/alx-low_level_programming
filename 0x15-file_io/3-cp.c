@@ -3,96 +3,88 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <string.h>
 #define LEN 1024
 /**
- * argcount_err - handles the case when the number of arguments is
- * invalid
- * Return: void
+ * err_hand - handles all the error cases using variadic functions
+ * @casenum: the error code we exit with
+ * Return: (void)
  */
-void argcount_err(void)
+void err_hand(int casenum, ...)
 {
-	dprintf(1, "Usage: cp file_from file_to\n");
-	exit(97);
-}
-/**
- * open_read_err - handles the case when reading or opening the given
- * source file fails
- * @filename: the name of the file
- * Return: void
- */
-void open_read_err(char *filename)
-{
-	dprintf(1, "Error: Can't read from file %s\n", filename);
-	exit(98);
-}
+	va_list arg_list;
 
-/**
- * create_write_err - handles the case when creating or writting to
- * the given source file fails
- * @filename: the name of the file
- * Return: void
- */
-void create_write_err(char *filename)
-{
-	dprintf(1, "Error: Can't write to %s\n", filename);
-	exit(99);
-}
-/**
- * close_err - handles the case when closing the given file fails
- * @filedesc: the name of the file
- * Return: void
- */
-void close_err(int filedesc)
-{
-	dprintf(1, "Error: can't close fd %d\n", filedesc);
-	exit(100);
+	va_start(arg_list, casenum);
+	if (casenum == 97)
+	{
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
+	else if (casenum == 98)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file ");
+		dprintf(STDERR_FILENO, "%s\n", va_arg(arg_list, char *));
+		exit(98);
+	}
+	else if (casenum == 99)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to ");
+		dprintf(STDERR_FILENO, "%s\n", va_arg(arg_list, char *));
+		exit(99);
+	}
+	else
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd ");
+		dprintf(STDERR_FILENO, "%d\n", va_arg(arg_list, int));
+		exit(100);
+	}
+	va_end(arg_list);
 }
 /**
  * main - copies the contents of the first file to the second
- * @argc: Argument Count
+ * @argc: argument count
  * @argv: the vector to the given arguments
- * Return: (0) if succesful
+ * Return: (0) upon success
  */
 int main(int argc, char **argv)
 {
 	int filesrc, filedest, writec, readc, closec;
 	char *buffer;
-	mode_t permis = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
 	if (argc != 3)
-		argcount_err();
+		err_hand(97);
 	if (argv[1] == 0)
-		open_read_err(argv[1]);
+		err_hand(98, argv[1]);
 	if (argv[2] == 0)
-		create_write_err(argv[2]);
+		err_hand(99, argv[2]);
 	filesrc = open(argv[1], O_RDONLY);
 	if (filesrc == -1)
-		open_read_err(argv[1]);
-	filedest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, permis);
+		err_hand(98, argv[1]);
+	filedest = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	if (filedest == -1)
-		create_write_err(argv[2]);
+		err_hand(99, argv[2]);
 	buffer = malloc(LEN * sizeof(char));
 	if (buffer == 0)
 		return (1);
 	readc = read(filesrc, buffer, LEN);
 	if (readc == -1)
-		open_read_err(argv[1]);
+		err_hand(98, argv[1]);
 	while (readc > 0)
 	{
 		writec = write(filedest, buffer, readc);
 		if (writec == -1)
-			create_write_err(argv[2]);
+			err_hand(99, argv[2]);
 		readc = read(filesrc, buffer, LEN);
 		if (readc == -1)
-			open_read_err(argv[1]);
+			err_hand(98, argv[1]);
 	}
 	closec = close(filesrc);
 	if (closec == -1)
-		close_err(filesrc);
+		err_hand(105, filesrc);
 	closec = close(filedest);
 	if (closec == -1)
-		close_err(filedest);
+		err_hand(105, filedest);
 	free(buffer);
 	return (0);
 }

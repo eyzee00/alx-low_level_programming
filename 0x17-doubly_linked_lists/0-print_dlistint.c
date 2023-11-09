@@ -13,10 +13,11 @@ size_t print_dlistint(const dlistint_t *head)
 
 	if (iter == NULL)
 		return (0);
-	while (iter->next != NULL)
+	while (iter != NULL)
 	{
 		printf("%d\n", iter->n);
 		count++;
+		iter = iter->next;
 	}
 	return (count);
 }

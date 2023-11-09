@@ -27,13 +27,6 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 		if (iter == NULL)
 			return (-1);
 	}
-	if (iter->next == NULL)
-	{
-		placeholder = iter->next;
-		iter->next = NULL;
-		free(placeholder);
-		return (1);
-	}
 	iter = iter->next;
 	placeholder = iter;
 	iter->prev->next = iter->next;

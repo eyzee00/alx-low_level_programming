@@ -14,12 +14,17 @@ dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
 		return (NULL);
 	newnode->n = n;
 	newnode->next = NULL;
+	/*if list is empty*/
 	if (*head == NULL)
 	{
 		newnode->prev = NULL;
 		*head = newnode;
 		return (newnode);
 	}
+	/**
+	 * else, we iterate until we find
+	 * the last element
+	 */
 	while (iter->next != NULL)
 		iter = iter->next;
 	newnode->prev = iter;

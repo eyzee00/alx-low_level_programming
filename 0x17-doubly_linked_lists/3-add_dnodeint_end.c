@@ -12,21 +12,18 @@ dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
 	newnode = malloc(sizeof(dlistint_t));
 	if (newnode == NULL)
 		return (NULL);
+	newnode->n = n;
+	newnode->next = NULL;
+	if (*head == NULL)
+	{
+		newnode->prev = NULL;
+		*head = newnode;
+		return (newnode);
+	}
 	while (iter->next != NULL)
 		iter = iter->next;
-	newnode->n = n;
 	newnode->prev = iter;
-	newnode->next = NULL;
-	/**
-	 * if the list is not empty, we link it with
-	 * the node
-	 */
 	if (iter != NULL)
 		iter->next = newnode;
-	/**
-	 * if the list is empty, we update the head pointer
-	 */
-	if (iter == NULL)
-		*head = newnode;
 	return (newnode);
 }

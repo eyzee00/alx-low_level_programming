@@ -37,7 +37,8 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	iter = iter->next;
 	placeholder = iter;
 	iter->prev->next = iter->next;
-	iter->next->prev = iter->prev;
+	if (iter->next != NULL)
+		iter->next->prev = iter->prev;
 	free(placeholder);
 	return (1);
 }

@@ -1,6 +1,7 @@
-#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
 
-int rand(void)
+int rand()
 {
 	static int ct = -1;
 

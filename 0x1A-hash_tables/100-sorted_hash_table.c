@@ -117,6 +117,8 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	if (ht == NULL || key == NULL || *key == '\0')
 		return (NULL);
 	index = key_index((const unsigned char *)key, ht->size);
+	if (index >= ht->size)
+		return (NULL);
 	iterator = ht->shead;
 	while (iterator != NULL)
 	{
@@ -135,7 +137,7 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 void shash_table_print(const shash_table_t *ht)
 {
 	shash_node_t *iterator = NULL;
-	unsigned long int i = 0, flag = 0;
+	unsigned long int i = 0;
 
 	if (ht == NULL)
 		return;
